@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #6c6b6a;
+    }
+    .calculadora {
+      width: 300px;
+      padding: 20px;
+      background-color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .tela {
+      width: 100%;
+      padding: 15px;
+      font-size: 24px;
+      text-align: right;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .botoes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .botao {
+      padding: 20px;
+      font-size: 18px;
+      background-color: #555;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .botao:hover {
+      background-color: #777;
+    }
+    .botao.operador {
+      background-color: #ff9500;
+    }
+    .botao.operador:hover {
+      background-color: #ffb300;
+    }
+    .botao.igual {
+      background-color: #009688;
+      grid-column: span 2;
+    }
+    .botao.igual:hover {
+      background-color: #00bfa5;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculadora">
+  <input type="text" id="tela" class="tela" readonly>
+  <div class="botoes">
+    <button class="botao" onclick="adicionarValor('7')">7</button>
+    <button class="botao" onclick="adicionarValor('8')">8</button>
+    <button class="botao" onclick="adicionarValor('9')">9</button>
+    <button class="botao operador" onclick="adicionarValor('/')">/</button>
+    
+    <button class="botao" onclick="adicionarValor('4')">4</button>
+    <button class="botao" onclick="adicionarValor('5')">5</button>
+    <button class="botao" onclick="adicionarValor('6')">6</button>
+    <button class="botao operador" onclick="adicionarValor('*')">*</button>
+    
+    <button class="botao" onclick="adicionarValor('1')">1</button>
+    <button class="botao" onclick="adicionarValor('2')">2</button>
+    <button class="botao" onclick="adicionarValor('3')">3</button>
+    <button class="botao operador" onclick="adicionarValor('-')">-</button>
+    
+    <button class="botao" onclick="adicionarValor('0')">0</button>
+    <button class="botao" onclick="adicionarValor('.')">.</button>
+    <button class="botao operador igual" onclick="calcular()">=</button>
+    <button class="botao operador" onclick="adicionarValor('+')">+</button>
+    
+    <button class="botao" style="grid-column: span 4;" onclick="limpar()">C</button>
+  </div>
+</div>
+
+<script>
+  function adicionarValor(valor) {
+    const tela = document.getElementById('tela');
+    tela.value += valor;
+  }
+
+  function calcular() {
+    const tela = document.getElementById('tela');
+    try {
+      tela.value = eval(tela.value);
+    } catch {
+      tela.value = 'Erro';
+    }
+  }
+
+  function limpar() {
+    document.getElementById('tela').value = '';
+  }
+</script>
+
+</body>
+</html>
